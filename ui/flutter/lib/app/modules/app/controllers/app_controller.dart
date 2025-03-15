@@ -288,9 +288,9 @@ class AppController extends GetxController with WindowListener, TrayListener {
         showNotification: true,
         playSound: false,
       ),
-      foregroundTaskOptions: const ForegroundTaskOptions(
-        interval: 5000,
-        isOnceEvent: false,
+      foregroundTaskOptions: ForegroundTaskOptions(
+        eventAction: ForegroundTaskEventAction.repeat(5000,),
+        // isOnceEvent: false,
         autoRunOnBoot: true,
         allowWakeLock: true,
         allowWifiLock: true,
@@ -303,11 +303,15 @@ class AppController extends GetxController with WindowListener, TrayListener {
       FlutterForegroundTask.startService(
         notificationTitle: "serviceTitle".tr,
         notificationText: "serviceText".tr,
-        notificationIcon: const NotificationIconData(
-          resType: ResourceType.mipmap,
-          resPrefix: ResourcePrefix.ic,
-          name: 'launcher',
-        ),
+        notificationIcon: const NotificationIcon(
+          metaDataName: 'launcher',
+          backgroundColor: Colors.blueGrey
+        )
+        // const NotificationIconData(
+        //   resType: ResourceType.mipmap,
+        //   resPrefix: ResourcePrefix.ic,
+        //   name: 'launcher',
+        // ),
       );
     }
   }
